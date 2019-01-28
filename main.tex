@@ -1,4 +1,6 @@
 \documentclass{article}
+
+% Preamble
 \usepackage{tikz}
 \usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
 
@@ -6,7 +8,9 @@
 
  % Listing 1: Tex for neural network layers
 \begin{figure}
+
     \centering
+    
     \begin{tikzpicture}[
          % define styles 
           clear/.style={
@@ -64,7 +68,9 @@
         \draw[->] (mat-6-3) -- node[above] {Output} +(3cm,0);
         
     \end{tikzpicture}
+    
     \caption{Neural network layers}
+    
 \end{figure}
 
 
@@ -85,11 +91,13 @@
             join = by -latex
         }
     ]
+        
         % Top chain x1 to w1
         \begin{scope}[start chain=1]
             \node[on chain=1] at (0,1.5cm)  (x1) {$x_1$};
             \node[on chain=1,join=by o-latex] (w1) {$w_1$};
         \end{scope}
+        
         % Middle chain x2 to output
         \begin{scope}[start chain=2]
             \node[on chain=2] (x2) {$x_2$};
@@ -98,6 +106,7 @@
             \node[on chain=2,squa,label=above:{\parbox{2cm}{\centering Activation\\ function}}]   {$f_{act}$};
             \node[on chain=2,squa,label=above:Output,join=by -latex] {$y_{out}$};
         \end{scope}
+        
         % Bottom chain x3 to w3
         \begin{scope}[start chain=3]
             \node[on chain=3] at (0,-1.5cm) 
@@ -105,17 +114,22 @@
             \node[on chain=3,label=below:Weights,join=by o-latex]
             (w3) {$w_3$};
         \end{scope}
+        
         % Bias
         \node[label=above:\parbox{2cm}{\centering Bias \\ $b$}] at (sigma|-w1) (b) {};
+        
         % Arrows joining w1, w3 and b to sigma
         \draw[-latex] (w1) -- (sigma);
         \draw[-latex] (w3) -- (sigma);
         \draw[o-latex] (b) -- (sigma);
+        
         % left hand side brace
         \draw[decorate,decoration={brace,mirror}] (x1.north west) -- node[left=10pt] {Inputs} (x3.south west);
         
     \end{tikzpicture}
+    
     \caption{Neural network pipeline}
+    
 \end{figure}
 
 
